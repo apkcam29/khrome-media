@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - "photos/**"
+      - "videos/**"
+      - "video-thumbs/**"
 
 jobs:
   build:
@@ -17,37 +19,109 @@ jobs:
           import os, json, datetime
 
           BASE_URL = "https://raw.githubusercontent.com/${{ github.repository }}/main"
-          MEDIA_DIR = "photos"
+          MEDIA_DIRS = ["photos", "videos"]
+          THUMBS_DIR = "video-thumbs"  # optional
+
+          # Broad support for real-world media (iPhone, screen recordings, exports)
+          IMAGE_EXTS = {"jpg","jpeg","png","webp","gif","avif","heic","heif"}
+          VIDEO_EXTS = {"mp4","mov","webm","m4v","mpg","mpeg","m2v","ogv"}
+
+          # What is most reliably playable directly in browsers
+          WEB_PLAYABLE_VIDEO_EXTS = {"mp4","webm","m4v","ogv"}
+          WEB_PLAYABLE_IMAGE_EXTS = {"jpg","jpeg","png","webp","gif","avif"}  # heic/heif may fail on some browsers
+
+          def iso_mtime(path):
+              stat = os.stat(path)
+              return datetime.datetime.utcfromtimestamp(stat.st_mtime).isoformat() + "Z"
+
+          def guess_mime(ext):
+              if ext in {"jpg","jpeg"}: return "image/jpeg"
+              if ext == "png": return "image/png"
+              if ext == "webp": return "image/webp"
+              if ext == "gif": return "image/gif"
+              if ext == "avif": return "image/avif"
+              if ext in {"heic","heif"}: return "image/heic"
+              if ext == "mp4": return "video/mp4"
+              if ext == "mov": return "video/quicktime"
+              if ext == "webm": return "video/webm"
+              if ext == "m4v": return "video/x-m4v"
+              if ext in {"mpg","mpeg","m2v"}: return "video/mpeg"
+              if ext == "ogv": return "video/ogg"
+              return "application/octet-stream"
+
+          def maybe_thumb_for(video_path):
+              """
+              Optional thumbnails:
+                videos/recap01.mp4
+                video-thumbs/recap01.jpg
+              """
+              base = os.path.splitext(os.path.basename(video_path))[0]
+              if not os.path.isdir(THUMBS_DIR):
+                  return None
+              for ext in ("jpg","jpeg","png","webp","avif"):
+                  cand = os.path.join(THUMBS_DIR, f"{base}.{ext}")
+                  if os.path.isfile(cand):
+                      cand = cand.replace("\\", "/")
+                      return f"{BASE_URL}/{cand}"
+              return None
 
           items = []
-          for root, _, files in os.walk(MEDIA_DIR):
-              for f in files:
-                  if f.startswith("."):
-                      continue
-                  path = os.path.join(root, f).replace("\\", "/")
-                  ext = f.split(".")[-1].lower()
+          for d in MEDIA_DIRS:
+              if not os.path.isdir(d):
+                  continue
 
-                  if ext in ["jpg","jpeg","png","webp","gif"]:
-                      mtype = "image"
-                  else:
-                      continue
+              for root, _, files in os.walk(d):
+                  for f in files:
+                      if f.startswith("."):
+                          continue
 
-                  stat = os.stat(path)
-                  created = datetime.datetime.utcfromtimestamp(stat.st_mtime).isoformat() + "Z"
+                      path = os.path.join(root, f).replace("\\", "/")
+                      ext = f.split(".")[-1].lower()
 
-                  items.append({
-                      "id": path,
-                      "type": mtype,
-                      "category": "photos",
-                      "title": os.path.splitext(os.path.basename(f))[0],
-                      "url": f"{BASE_URL}/{path}",
-                      "createdTime": created
-                  })
+                      if ext in IMAGE_EXTS:
+                          mtype = "image"
+                      elif ext in VIDEO_EXTS:
+                          mtype = "video"
+                      else:
+                          continue
 
+                      created = iso_mtime(path)
+                      category = path.split("/")[0]  # photos / videos
+                      mimeType = guess_mime(ext)
+
+                      # Web-playability hints for Lovable UI logic
+                      if mtype == "video":
+                          isWebPlayable = ext in WEB_PLAYABLE_VIDEO_EXTS
+                      else:
+                          isWebPlayable = ext in WEB_PLAYABLE_IMAGE_EXTS
+
+                      item = {
+                          "id": path,
+                          "type": mtype,                 # "image" | "video"
+                          "category": category,          # "photos" | "videos"
+                          "title": os.path.splitext(os.path.basename(f))[0],
+                          "url": f"{BASE_URL}/{path}",
+                          "createdTime": created,
+                          "mimeType": mimeType,
+                          "ext": ext,
+                          "isWebPlayable": isWebPlayable
+                      }
+
+                      # Optional thumbnailUrl for videos
+                      if mtype == "video":
+                          thumb = maybe_thumb_for(path)
+                          if thumb:
+                              item["thumbnailUrl"] = thumb
+
+                      items.append(item)
+
+          # Newest first
           items.sort(key=lambda x: x["createdTime"], reverse=True)
 
           with open("manifest.json", "w", encoding="utf-8") as out:
               json.dump({"items": items}, out, ensure_ascii=False, indent=2)
+
+          print(f"Wrote manifest.json with {len(items)} items")
           PY
 
       - name: Commit manifest.json
@@ -57,4 +131,3 @@ jobs:
           git add manifest.json
           git commit -m "Update manifest" || echo "No changes"
           git push
-
