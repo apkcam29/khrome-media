@@ -1,1 +1,60 @@
+name: Build media manifest
+
+on:
+  push:
+    paths:
+      - "photos/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate manifest.json
+        run: |
+          python - << 'PY'
+          import os, json, datetime
+
+          BASE_URL = "https://raw.githubusercontent.com/${{ github.repository }}/main"
+          MEDIA_DIR = "photos"
+
+          items = []
+          for root, _, files in os.walk(MEDIA_DIR):
+              for f in files:
+                  if f.startswith("."):
+                      continue
+                  path = os.path.join(root, f).replace("\\", "/")
+                  ext = f.split(".")[-1].lower()
+
+                  if ext in ["jpg","jpeg","png","webp","gif"]:
+                      mtype = "image"
+                  else:
+                      continue
+
+                  stat = os.stat(path)
+                  created = datetime.datetime.utcfromtimestamp(stat.st_mtime).isoformat() + "Z"
+
+                  items.append({
+                      "id": path,
+                      "type": mtype,
+                      "category": "photos",
+                      "title": os.path.splitext(os.path.basename(f))[0],
+                      "url": f"{BASE_URL}/{path}",
+                      "createdTime": created
+                  })
+
+          items.sort(key=lambda x: x["createdTime"], reverse=True)
+
+          with open("manifest.json", "w", encoding="utf-8") as out:
+              json.dump({"items": items}, out, ensure_ascii=False, indent=2)
+          PY
+
+      - name: Commit manifest.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add manifest.json
+          git commit -m "Update manifest" || echo "No changes"
+          git push
 
