@@ -1,15 +1,19 @@
 {
   "items": [
-    { "name": "Aftermidnight", "location": "Los Angeles" },
-    { "name": "Neo Bounce", "location": "Los Angeles" },
-    { "name": "SXTCY", "location": "Los Angeles" },
-    { "name": "LickNDip", "location": "Los Angeles" },
-    { "name": "Star Crossed", "location": "Inland Empire" },
-    { "name": "Inland Groove", "location": "Inland Empire" },
-    { "name": "Tranceformity", "location": "Redlands" },
-    { "name": "Vibe Junkies", "location": "Redlands" },
-    { "name": "Darkroom", "location": "Redlands" },
-    { "name": "Rumble Nation", "location": "Palm Springs" },
-    { "name": "Warehouse Wednesday", "location": "Palm Springs" }
+    { "name": "Aftermidnight", "location": "Los Angeles, CA" },
+    { "name": "Neo Bounce", "location": "Los Angeles, CA" },
+    { "name": "SXTCY", "location": "Los Angeles, CA" },
+    { "name": "LickNDip", "location": "Los Angeles, CA" },
+    { "name": "Star Crossed", "location": "Inland Empire, CA" },
+    { "name": "Inland Groove", "location": "Inland Empire, CA" },
+    { "name": "Tranceformity", "location": "Redlands, CA" },
+    { "name": "Vibe Junkies", "location": "Redlands, CA" },
+    { "name": "Darkroom", "location": "Redlands, CA" },
+    { "name": "Rumble Nation", "location": "Palm Springs, CA" },
+    { "name": "Warehouse Wednesday", "location": "Palm Springs, CA" },
+    { "name": "Vesper", "location": "Victorville, CA" },
+    { "name": "Bounce SF", "location": "San Francisco, CA" },
+    { "name": "Academy / Speed Freak", "location": "Los Angeles, CA" },
+    { "name": "Valley Bounce", "location": "Palm Springs, CA" }
   ]
 }
