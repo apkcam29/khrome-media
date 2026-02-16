@@ -1,19 +1,79 @@
 {
   "items": [
-    { "name": "Neo Bounce", "location": "Los Angeles, CA" },
-    { "name": "Aftermidnight", "location": "Los Angeles, CA" },
-    { "name": "SXTCY", "location": "Los Angeles, CA" },
-    { "name": "LickNDip", "location": "Los Angeles, CA" },
-    { "name": "Star Crossed", "location": "Inland Empire, CA" },
-    { "name": "Inland Groove", "location": "Inland Empire, CA" },
-    { "name": "Tranceformity", "location": "Redlands, CA" },
-    { "name": "Vibe Junkies", "location": "Redlands, CA" },
-    { "name": "Darkroom", "location": "Redlands, CA" },
-    { "name": "Rumble Nation", "location": "Palm Springs, CA" },
-    { "name": "Warehouse Wednesday", "location": "Palm Springs, CA" },
-    { "name": "Vesper", "location": "Victorville, CA" },
-    { "name": "Bounce SF", "location": "San Francisco, CA" },
-    { "name": "Academy / Speed Freak", "location": "Los Angeles, CA" },
-    { "name": "Valley Bounce", "location": "Palm Springs, CA" }
+{
+      "name": "Aftermidnight",
+      "location": "Los Angeles, CA",
+      "link": "https://www.instagram.com/aftermidnight.la/"
+    },
+    {
+      "name": "Neo Bounce",
+      "location": "Los Angeles, CA",
+      "link": "https://www.instagram.com/neo_bounce/"
+    },
+    {
+      "name": "SXTCY",
+      "location": "Los Angeles, CA",
+      "link": "https://www.instagram.com/sxtcy.la/"
+    },
+    {
+      "name": "LickNDip",
+      "location": "Los Angeles, CA",
+      "link": "https://www.instagram.com/lickndipevents/"
+    },
+    {
+      "name": "Star Crossed",
+      "location": "Inland Empire, CA",
+      "link": "https://www.instagram.com/starcrossedrave/"
+    },
+    {
+      "name": "Inland Groove",
+      "location": "Inland Empire, CA",
+      "link": "https://www.instagram.com/inlandgroove/"
+    },
+    {
+      "name": "Tranceformity",
+      "location": "Redlands, CA",
+      "link": "https://www.instagram.com/tranceformity__group/"
+    },
+    {
+      "name": "Vibe Junkies",
+      "location": "Redlands, CA",
+      "link": "https://www.instagram.com/vibe_junkies/"
+    },
+    {
+      "name": "Darkroom",
+      "location": "Redlands, CA",
+      "link": "https://www.instagram.com/_darkroom_events/"
+    },
+    {
+      "name": "Rumble Nation",
+      "location": "Palm Springs, CA",
+      "link": "https://www.instagram.com/rumblenation.tv/"
+    },
+    {
+      "name": "Warehouse Wednesday",
+      "location": "Palm Springs, CA",
+      "link": ""
+    },
+    {
+      "name": "Vesper",
+      "location": "Victorville, CA",
+      "link": "https://www.instagram.com/vesper_hd/"
+    },
+    {
+      "name": "Bounce SF",
+      "location": "San Francisco, CA",
+      "link": "https://www.instagram.com/bouncesf/"
+    },
+    {
+      "name": "Academy / Speed Freak",
+      "location": "Los Angeles, CA",
+      "link": "https://www.instagram.com/speedfreakclub/"
+    },
+    {
+      "name": "Valley Bounce",
+      "location": "Palm Springs, CA",
+      "link": "https://www.instagram.com/valleybounce/"
+    }
   ]
 }
