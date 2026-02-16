@@ -1,14 +1,19 @@
 {
   "items": [
-{
-      "name": "Aftermidnight",
-      "location": "Los Angeles, CA",
-      "link": "https://www.instagram.com/aftermidnight.la/"
-    },
     {
       "name": "Neo Bounce",
       "location": "Los Angeles, CA",
       "link": "https://www.instagram.com/neo_bounce/"
+    },
+    {
+      "name": "Academy / Speed Freak",
+      "location": "Los Angeles, CA",
+      "link": "https://www.instagram.com/speedfreakclub/"
+    },
+     {
+      "name": "Aftermidnight",
+      "location": "Los Angeles, CA",
+      "link": "https://www.instagram.com/aftermidnight.la/"
     },
     {
       "name": "SXTCY",
@@ -19,11 +24,6 @@
       "name": "LatNLong",
       "location": "Palm Springs, CA",
       "link": "https://www.instagram.com/lat_n_long/"
-    },
-    {
-      "name": "LickNDip",
-      "location": "Los Angeles, CA",
-      "link": "https://www.instagram.com/lickndipevents/"
     },
     {
       "name": "Star Crossed",
@@ -71,14 +71,14 @@
       "link": "https://www.instagram.com/bouncesf/"
     },
     {
-      "name": "Academy / Speed Freak",
-      "location": "Los Angeles, CA",
-      "link": "https://www.instagram.com/speedfreakclub/"
-    },
-    {
       "name": "Valley Bounce",
       "location": "Palm Springs, CA",
       "link": "https://www.instagram.com/valleybounce/"
+    },
+    {
+      "name": "LickNDip",
+      "location": "Los Angeles, CA",
+      "link": "https://www.instagram.com/lickndipevents/"
     }
   ]
 }
