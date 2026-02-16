@@ -1,6 +1,15 @@
 {
   "items": [
-    { "name": "Neo Bounce", "location": "Los Angeles, CA" },
-    { "name": "Aftermidnight" }
+    { "name": "Aftermidnight", "location": "Los Angeles" },
+    { "name": "Neo Bounce", "location": "Los Angeles" },
+    { "name": "SXTCY", "location": "Los Angeles" },
+    { "name": "LickNDip", "location": "Los Angeles" },
+    { "name": "Star Crossed", "location": "Inland Empire" },
+    { "name": "Inland Groove", "location": "Inland Empire" },
+    { "name": "Tranceformity", "location": "Redlands" },
+    { "name": "Vibe Junkies", "location": "Redlands" },
+    { "name": "Darkroom", "location": "Redlands" },
+    { "name": "Rumble Nation", "location": "Palm Springs" },
+    { "name": "Warehouse Wednesday", "location": "Palm Springs" }
   ]
 }
